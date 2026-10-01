@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống Báo cáo Cấp Tiểu học - Cà Mau</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">SỞ GIÁO DỤC VÀ ĐÀO TẠO TỈNH CÀ MAU - QUẢN TRỊ DỮ LIỆU</a>
+            <span class="navbar-text text-white">Tài khoản: Quản trị Sở</span>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <h4 class="mb-4">Tiến độ Báo cáo Toàn tỉnh (Năm học 2025-2026)</h4>
+        <div class="row text-center">
+            <div class="col-md-3">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Tổng Cơ sở GD</h5>
+                        <h2 id="tong_so_truong">--</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Đã Nộp (Hợp lệ)</h5>
+                        <h2 id="da_nop">--</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Chưa Nộp / Quá Hạn</h5>
+                        <h2 id="chua_nop">--</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card text-dark bg-warning mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Lỗi / Cảnh báo</h5>
+                        <h2 id="co_loi">--</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Lấy dữ liệu thực tế từ API Backend
+        fetch('/api/stats')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('tong_so_truong').innerText = data.tong_so_truong;
+                document.getElementById('da_nop').innerText = data.da_nop;
+                document.getElementById('chua_nop').innerText = data.chua_nop;
+                document.getElementById('co_loi').innerText = data.co_loi;
+            });
+    </script>
+</body>
+</html>
